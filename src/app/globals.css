@@ -170,9 +170,9 @@
   }
 
   /* Selectable dates (today and future) */
-  .rdp-day {
+  html.dark .rdp-day {
     border-radius: 0.375rem;
-    color: #60a5fa; /* Light blue for dark mode */
+    color: #d0d1d2; /* Light blue for dark mode */
     border: none;
     background: transparent;
     cursor: pointer;
@@ -245,6 +245,10 @@
     position: relative;
   }
 
+  html.dark .rdp-day[data-disabled="true"], html.light .rdp-day[data-disabled="true"] {
+    color: #86a5c1;
+  }
+
   .rdp-day[data-disabled="true"]::after {
     content: '✕';
     position: absolute;
@@ -305,4 +309,5 @@
   .rdp-row {
     margin-top: 0.5rem;
   }
+
 }

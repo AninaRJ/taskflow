@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import "react-day-picker/style.css"
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import { TimezoneProvider } from '@/providers/TimezoneProvider'
 

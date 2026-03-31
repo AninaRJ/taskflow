@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { format } from 'date-fns'
 import { Clock, ChevronDown } from 'lucide-react'
-import { DayPicker } from 'react-day-picker'
+import { DayPicker, getDefaultClassNames } from 'react-day-picker'
 import { Button } from '@/components/ui/button'
 import {
   Popover,
@@ -61,6 +61,7 @@ export function DateTimePicker({ value, onChange, placeholder = 'Pick a date' }:
 
   // Get today's date in user's timezone for disabling past dates
   const todayUTC = getTodayUTC()
+  const defaultClassNames = getDefaultClassNames();
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -95,6 +96,7 @@ export function DateTimePicker({ value, onChange, placeholder = 'Pick a date' }:
               }}
               classNames={{
                 day_disabled: 'disabled-date',
+                chevron: `${defaultClassNames.chevron} fill-current text-foreground`, // Theme-aware chevron color
               }}
             />
           </div>
