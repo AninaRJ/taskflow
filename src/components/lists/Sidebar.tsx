@@ -331,7 +331,7 @@ export function Sidebar() {
           <div className="space-y-4 pt-2">
             <div className="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border">
               <div>
-                <p className="text-sm font-medium">Push Notifications</p>
+                <p className="text-sm font-medium">Push Notifications</p> 
                 <p className="text-xs text-muted-foreground mt-0.5">
                   {permissionStatus === 'granted'
                     ? 'Permission granted'

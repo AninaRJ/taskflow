@@ -1,22 +1,98 @@
-# Dependencies
+# ─── Dependencies ─────────────────────────────────────────────────────────
 node_modules/
 .pnp
 .pnp.js
+yarn.lock
+package-lock.json
 
-# Next.js
+# ─── Next.js & Build ──────────────────────────────────────────────────────
 .next/
 out/
 build/
+dist/
+*.tsbuildinfo
+.turbo
 
-# Env
+# ─── Testing ──────────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+*.lcov
+
+# ─── Environment ──────────────────────────────────────────────────────────
 .env
 .env.local
 .env.*.local
+.env*.local
+!.env.example
 
-# Debug
-npm-debug.log*
-
-# Misc
+# ─── IDE & Editor ────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
-*.pem
+.project
+.classpath
+*.iml
+.c9/
+*.sublime-project
+*.sublime-workspace
+.jshintrc
+
+# ─── OS Files ──────────────────────────────────────────────────────────
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+*.lnk
+.env.local.php
+
+# ─── Logs & Temp ──────────────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+.Python
+
+# ─── Misc ──────────────────────────────────────────────────────────────
 .vercel
+.vercel.json
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+*.pem
+
+# ─── Development ──────────────────────────────────────────────────────
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging
+
+# ─── Deployment ────────────────────────────────────────────────────────
+.netlify
+.firebase
+firebase-debug.log
+.surge
+
+# ─── Local overrides ──────────────────────────────────────────────────
+local/
+private/
+secrets/
+
+# ─── Backups & Temp Files ────────────────────────────────────────────
+*.backup
+*.bak
+*.swp
+.tmp/
+tmp/
+temp/
+
+# ─── IDE plugins ──────────────────────────────────────────────────────
+.prettier-cache
+.eslintignore.bak
+
