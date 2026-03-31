@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    /* Dark sleek developer theme (default) */
+    --background: 222 16% 8%;
+    --foreground: 210 20% 92%;
+
+    --card: 222 14% 11%;
+    --card-foreground: 210 20% 90%;
+
+    --popover: 222 14% 10%;
+    --popover-foreground: 210 20% 90%;
+
+    --primary: 252 87% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 12% 16%;
+    --secondary-foreground: 210 20% 80%;
+
+    --muted: 222 12% 14%;
+    --muted-foreground: 215 14% 48%;
+
+    --accent: 222 12% 16%;
+    --accent-foreground: 210 20% 90%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 12% 18%;
+    --input: 222 12% 16%;
+    --ring: 252 87% 67%;
+
+    --radius: 0.625rem;
+
+    --sidebar-bg: 222 18% 6%;
+
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html.light {
+    color-scheme: light;
+    /* Light theme */
+    --background: 0 0% 98%;
+    --foreground: 222 13% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 13% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 13% 13%;
+
+    --primary: 252 87% 61%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 12% 90%;
+    --secondary-foreground: 222 13% 30%;
+
+    --muted: 222 12% 90%;
+    --muted-foreground: 215 14% 48%;
+
+    --accent: 222 12% 90%;
+    --accent-foreground: 222 13% 20%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 12% 92%;
+    --input: 222 12% 95%;
+    --ring: 252 87% 61%;
+
+    --sidebar-bg: 0 0% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 100px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+
+  /* Focus ring */
+  *:focus-visible {
+    @apply outline-none ring-1 ring-ring;
+  }
+
+  /* Selection */
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+  }
+}
+
+@layer components {
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+  }
+
+  /* Grid background */
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* react-day-picker styling */
+  .rdp {
+    --rdp-cell-size: 36px;
+    --rdp-accent-color: hsl(var(--primary));
+    --rdp-background-color: hsl(var(--primary) / 0.1);
+  }
+
+  .rdp-head_cell {
+    color: hsl(var(--muted-foreground));
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .rdp-cell {
+    text-align: center;
+  }
+
+  /* Selectable dates (today and future) */
+  .rdp-day {
+    border-radius: 0.375rem;
+    color: #60a5fa; /* Light blue for dark mode */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    user-select: none;
+    position: relative;
+  }
+
+  html.light .rdp-day {
+    color: #000; /* Black text in light mode */
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not(.dark) .rdp-day {
+      color: #000; /* Black text in light mode */
+    }
+  }
+
+  .rdp-day:hover:not([data-disabled="true"]):not([data-selected]) {
+    background-color: hsl(var(--accent));
+  }
+
+  .rdp-day[data-selected] {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    font-weight: 600;
+  }
+
+  .rdp-day[data-today] {
+    border: 2px solid hsl(var(--primary));
+    font-weight: 600;
+  }
+
+  /* Disabled dates (past dates) - using custom class */
+  .disabled-date {
+    background-color: hsl(var(--muted) / 0.4) !important;
+    color: hsl(var(--muted-foreground)) !important;
+    cursor: not-allowed !important;
+    position: relative !important;
+  }
+
+  .disabled-date::after {
+    content: '✕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: bold;
+    color: hsl(var(--destructive));
+    font-size: 1rem;
+  }
+
+  .disabled-date:hover::after {
+    opacity: 1;
+  }
+
+  .disabled-date:hover {
+    background-color: hsl(var(--muted) / 0.5) !important;
+  }
+
+  /* Disabled dates (past dates) */
+  .rdp-day[data-disabled="true"] {
+    background-color: hsl(var(--muted) / 0.4);
+    color: hsl(var(--muted-foreground));
+    cursor: not-allowed;
+    position: relative;
+  }
+
+  .rdp-day[data-disabled="true"]::after {
+    content: '✕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: bold;
+    color: hsl(var(--destructive));
+    font-size: 1rem;
+  }
+
+  .rdp-day[data-disabled="true"]:hover::after {
+    opacity: 1;
+  }
+
+  .rdp-day[data-disabled="true"]:hover {
+    background-color: hsl(var(--muted) / 0.5);
+  }
+
+  .rdp-day_outside {
+    color: hsl(var(--muted-foreground));
+    opacity: 0.5;
+  }
+
+  .rdp-button {
+    border-radius: 0.375rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .rdp-button:hover:not([disabled]):not([data-selected]) {
+    background-color: hsl(var(--accent));
+  }
+
+  .rdp-button:active:not([disabled]) {
+    background-color: hsl(var(--primary) / 0.2);
+  }
+
+  .rdp-button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .rdp-caption {
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+
+  .rdp-head {
+    margin-bottom: 0.5rem;
+  }
+
+  .rdp-row {
+    margin-top: 0.5rem;
+  }
+}
